@@ -14,7 +14,7 @@ class Migration(SchemaMigration):
 
     def backwards(self, orm):
         # Adding field 'Payment.payer_code'
-        db.delete_column(u'yandex_money_payment', 'user')
+        db.delete_column(u'yandex_money_payment', 'user_id')
 
     models = {
         u'auth.group': {
