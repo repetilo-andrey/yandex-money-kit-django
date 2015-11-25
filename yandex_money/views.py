@@ -64,10 +64,14 @@ class BaseView(View):
             getattr(settings, 'YANDEX_MONEY_MAIL_ADMINS_ON_PAYMENT_ERROR', True) and
             params.get('code') != '0'
         ):
-            mail_admins('yandexmoney_django error', u'post data: {post_data}\n\nresponse:{response}'.format(
-                post_data=request.POST,
-                response=content,
-            ))
+            import json
+            post_data = u'post data: {post_data}\n\nresponse:{response}'.format(
+                post_data=json.dumps(request.POST),
+                response=json.dumps(params),
+            )
+            from content.utils import send_mandrill_email
+            for admin in settings.ADMINS:
+                send_mandrill_email('yandex-error', admin[1], 'tceh.com', [{'name': u'yandex_log', 'content': post_data}])
 
         return HttpResponse(content, content_type='application/xml')
 
