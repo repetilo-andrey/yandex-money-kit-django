@@ -22,15 +22,18 @@ class Payment(models.Model):
         )
 
     class PAYMENT_TYPE:
-        PC = 'pc'
-        AC = 'ac'
-        GP = 'gp'
-        MC = 'mc'
-        WM = 'wm'
-        SB = 'sb'
-        AB = 'ab'
-        MA = 'ma'
-        PB = 'pb'
+        PC = 'PC'
+        AC = 'AC'
+        GP = 'GP'
+        MC = 'MC'
+        WM = 'WM'
+        SB = 'SB'
+        AB = 'AB'
+        MA = 'MA'
+        PB = 'PB'
+        QW = 'QW'
+        QP = 'QP'
+        KV = 'KV'
         CHOICES = (
             (PC, u'Кошелек Яндекс.Деньги'),
             (AC, u'Банковская карта'),
@@ -41,6 +44,9 @@ class Payment(models.Model):
             (AB, u'Альфа-Клик'),
             (MA, u'MasterPass'),
             (PB, u'Интернет-банк Промсвязьбанка'),
+            (QW, u'QIWI Wallet'),
+            (QP, u'Доверительный платеж (Куппи.ру)'),
+            (KV, u'Оплата через КупиВкредит (Тинькофф Банк)'),
         )
 
     class CURRENCY:
