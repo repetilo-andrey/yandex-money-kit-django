@@ -151,6 +151,7 @@ class CheckForm(BasePaymentForm):
     shopSumAmount = forms.DecimalField(min_value=0, decimal_places=2)
     shopSumCurrencyPaycash = forms.IntegerField()
     paymentPayerCode = forms.IntegerField(min_value=1)
+    is_credit_payment = forms.CharField(required=False)
 
 
 class NoticeForm(BasePaymentForm):

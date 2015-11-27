@@ -100,7 +100,20 @@ class BaseView(View):
         return {'code': '100'}
 
     def mark_payment(self, payment, cd):
-        pass
+        if cd.get('action') == 'checkOrder':
+            if cd.get('is_credit_payment'):
+                if int(cd.get('is_credit_payment')) == 1:
+                    ticket = payment.programme_reg_yk.all()[0]
+                    if not ticket.is_booked:
+                        ticket.is_booked = True
+                        ticket.save()
+        if cd.get('action') == 'cancelOrder':
+            if cd.get('is_credit_payment'):
+                if int(cd.get('is_credit_payment')) == 1:
+                    ticket = payment.programme_reg_yk.all()[0]
+                    if ticket.is_booked:
+                        ticket.is_booked = False
+                        ticket.save()
 
     def get_xml(self, params):
         element = self.get_xml_element(**params)
