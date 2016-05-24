@@ -101,6 +101,8 @@ class BaseView(View):
 
     def mark_payment(self, payment, cd):
         if cd.get('action') == 'checkOrder':
+            payment.invoice_id = cd.get('invoiceId')
+            payment.save()
             if cd.get('is_credit_payment'):
                 if int(cd.get('is_credit_payment')) == 1:
                     ticket = payment.programme_reg_yk.all()[0]
