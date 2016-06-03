@@ -96,8 +96,7 @@ class Payment(models.Model):
     status = models.CharField(
         u'Статус', max_length=16, choices=STATUS.CHOICES,
         default=STATUS.PROCESSED)
-    invoice_id = models.PositiveIntegerField(
-        u'Номер транзакции оператора', blank=True, null=True)
+    invoice_id = models.CharField(u'Номер транзакции оператора', max_length=255, blank=True)
     shop_amount = models.DecimalField(
         u'Сумма полученная на р/с', max_digits=15, decimal_places=2, blank=True,
         null=True, help_text=u'За вычетом процента оператора')
